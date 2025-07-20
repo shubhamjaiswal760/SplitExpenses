@@ -10,22 +10,30 @@ const balanceRoutes = require('./routes/balances');
 
 const app = express();
 
-// CORS configuration
-const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-    'https://split-expenses-frontend.vercel.app',
-    process.env.FRONTEND_URL
-  ].filter(Boolean),
+// Enable CORS for all origins (fix for deployment)
+app.use(cors({
+  origin: true,
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
+}));
+
+// Handle preflight requests
+app.options('*', cors());
 
 // Middleware
-app.use(cors(corsOptions));
 app.use(express.json());
+
+// Test route
+app.get('/', (req, res) => {
+  res.json({ message: 'Backend is working!', timestamp: new Date().toISOString() });
+});
+
+// Health check route
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
