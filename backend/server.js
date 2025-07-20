@@ -10,8 +10,17 @@ const balanceRoutes = require('./routes/balances');
 
 const app = express();
 
+// CORS configuration
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.FRONTEND_URL || true
+    : 'http://localhost:3000',
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes

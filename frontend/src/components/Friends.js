@@ -90,7 +90,7 @@ const Friends = () => {
             <div key={friend._id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
               <div>
                 <span className="font-medium text-gray-800">{friend.username}</span>
-                <span className="text-gray-500 text-sm ml-2">{friend.email}</span>
+                {/* <span className="text-gray-500 text-sm ml-2">{friend.email}</span> */}
               </div>
               <button
                 onClick={() => removeFriend(friend._id)}
