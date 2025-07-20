@@ -57,7 +57,7 @@ const Auth = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
+            <div className='py-2'>
               <input
                 name="username"
                 type="text"
@@ -69,7 +69,7 @@ const Auth = () => {
               />
             </div>
             {!isLogin && (
-              <div>
+              <div className='py-2'>
                 <input
                   name="email"
                   type="email"
@@ -81,7 +81,7 @@ const Auth = () => {
                 />
               </div>
             )}
-            <div>
+            <div className='py-2'>
               <input
                 name="password"
                 type="password"
